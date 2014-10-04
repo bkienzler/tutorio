@@ -10,11 +10,11 @@
       </button>
       <a class="navbar-brand" href="#">tutorio</a>
     </div>
-    
-       <ul class="nav navbar-nav">
-        <li><a href="#">Explore</a></li>
-        <li><a href="#">+ Add</a></li>
-      </ul>
+
+    <ul class="nav navbar-nav">
+      <li><a href="#">Explore</a></li>
+      <li><a href="#">+ Add</a></li>
+    </ul>
 
     <form class="navbar-form navbar-left" role="search">
       <div class="form-group">
@@ -26,9 +26,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "Login", root_path %></li>
-      <li><%= link_to "Signup", root_path %></li> 
-    </ul>
+        <% if user_signed_in? %>
+        <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+        <li><%= link_to "Log in", new_user_session_path %></li>
+        <li><%= link_to "Sign up", new_user_registration_path %></li>
+        <% end %>
+      </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container --> 
 </nav>
